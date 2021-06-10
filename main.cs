@@ -96,11 +96,16 @@ public class ScriptMain : UserComponent
         //        OdbcCommand cmd = new OdbcCommand("{call sproc300758_11728751_1904306(?)}", odbcConn);
         //        OdbcCommand cmd = new OdbcCommand("{call sproc300758_11728751_1904306(?)}", odbcConn);
         cmd.Parameters.Add("@PCN", OdbcType.Int);
-        cmd.Parameters["@PCN"].Value = 300758;
+        cmd.Parameters["@PCN"].Value = Variables.AlbPCN;
+//        cmd.Parameters["@PCN"].Value = 300758;
         cmd.Parameters.Add("@By_Due_Date", OdbcType.NVarChar);
-        cmd.Parameters["@By_Due_Date"].Value = "20210701";
+        //cmd.Parameters["@By_Due_Date"].Value = "20210701";
+        string byDueDate = Variables.Add31Days.ToString();
+        cmd.Parameters["@By_Due_Date"].Value = byDueDate;
+      //  cmd.Parameters["@By_Due_Date"].Value = "20210701";
         cmd.Parameters.Add("@Building_Key", OdbcType.Int);
-        cmd.Parameters["@Building_Key"].Value = 5644;
+        cmd.Parameters["@Building_Key"].Value = Variables.BuildingKeyPlt6;
+//        cmd.Parameters["@Building_Key"].Value = 5644;
         //        cmd.Parameters.Add("@PCN", OdbcType.NVarChar);
         //        cmd.Parameters["@PCN"].Value = "300758";
 
@@ -152,15 +157,18 @@ public class ScriptMain : UserComponent
         while (odbcDataReader.Read())
                 {
                         OutputBuffer.AddRow();
-                        OutputBuffer.pcn = odbcDataReader.GetInt32(0);
-                        OutputBuffer.buildingkey = odbcDataReader.GetInt32(1);
-                        OutputBuffer.partkey = odbcDataReader.GetInt32(2);
-                        OutputBuffer.qtydue = odbcDataReader.GetInt32(3);
-                        OutputBuffer.qtyshipped = odbcDataReader.GetInt32(4);
-                        OutputBuffer.qtywip = odbcDataReader.GetInt32(5);
-                        OutputBuffer.qtyready = odbcDataReader.GetInt32(6);
-                        OutputBuffer.qtyloaded = odbcDataReader.GetInt32(7);
-                        OutputBuffer.qtyreadyorloaded = odbcDataReader.GetInt32(8);
+                        OutputBuffer.id = odbcDataReader.GetInt32(0);
+                        OutputBuffer.pcn = odbcDataReader.GetInt32(1);
+                        OutputBuffer.buildingkey = odbcDataReader.GetInt32(2);
+                        OutputBuffer.buildingcode = odbcDataReader.GetString(3);
+                        OutputBuffer.partkey = odbcDataReader.GetInt32(4);
+                        OutputBuffer.partno = odbcDataReader.GetString(5);
+                        OutputBuffer.qtydue = odbcDataReader.GetInt32(6);
+                        OutputBuffer.qtyshipped = odbcDataReader.GetInt32(7);
+                        OutputBuffer.qtywip = odbcDataReader.GetInt32(8);
+                        OutputBuffer.qtyready = odbcDataReader.GetInt32(9);
+                        OutputBuffer.qtyloaded = odbcDataReader.GetInt32(10);
+                        OutputBuffer.qtyreadyorloaded = odbcDataReader.GetInt32(11);
                         //OutputBuffer.lessthanduedate = odbcDataReader.GetDateTime(8);
                 }
       

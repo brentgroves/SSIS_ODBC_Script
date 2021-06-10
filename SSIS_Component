@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/13450289/how-to-access-ssis-package-variables-inside-script-component
 Accessing package variables in a Script Component (of a Data Flow Task) is not the same as accessing package variables in a Script Task. For a Script Component, you first need to open the Script Transformation Editor (right-click on the component and select "Edit..."). In the Custom Properties section of the Script tab, you can enter (or select) the properties you want to make available to the script, either on a read-only or read-write basis: screenshot of Script Transformation Editor properties page Then, within the script itself, the variables will be available as strongly-typed properties of the Variables object:
 
 // Modify as necessary

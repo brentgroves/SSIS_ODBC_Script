@@ -1,0 +1,10 @@
+SMTP Connection Manager
+bgroves@buschegroup.com
+subject: SSIS Failure Notification
+MessageSource: SSIS Failure Notification - 
+1. View History for MyDW SQL Agent job 
+2. Expand the failed run to see which step failed
+3. Start the job by selecting Start Job at Step and start the job at the step it failed on.
+4. The script will start running at that step and it will continue running all steps ater that one.
+5. Verify the job finished successfully
+SMTP server: mobexglobal-com.mail.protection.outlook.com
